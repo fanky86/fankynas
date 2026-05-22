@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>FankyNAS | Immich • CasaOS • Dashboard Profesional</title>
+  <meta name="description" content="FankyNAS - Solusi penyimpanan pribadi modern. Kelola foto dengan Immich, kelola NAS dengan CasaOS, dashboard terpusat, dan akses GitHub. Download APK resmi dan hubungi kami.">
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header */
+    .navbar {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+    .logo span {
+      color: #2563eb;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e293b;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+    .btn-outline-sm {
+      border: 1.5px solid #2563eb;
+      padding: 6px 14px;
+      border-radius: 40px;
+      background: transparent;
+      font-weight: 600;
+    }
+    .btn-outline-sm:hover {
+      background: #2563eb;
+      color: white !important;
+    }
+
+    /* hero */
+    .hero {
+      padding: 80px 0 60px;
+      background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 48px;
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-badge {
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #0f172a, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #334155;
+      max-width: 550px;
+      margin-bottom: 32px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 20px;
+    }
+    .hero-stats div {
+      font-weight: 600;
+    }
+    .hero-stats span {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #2563eb;
+    }
+    .hero-image {
+      flex: 0.8;
+      background: #eef2ff;
+      border-radius: 36px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+    }
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    /* section umum */
+    section {
+      padding: 80px 0;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-title span {
+      background: linear-gradient(120deg, #2563eb, #38bdf8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .service-card {
+      background: white;
+      border-radius: 28px;
+      padding: 32px 24px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+      transition: all 0.25s ease;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.12);
+      border-color: #cbd5e1;
+    }
+    .service-icon {
+      font-size: 2.8rem;
+      background: #eef2ff;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30px;
+      margin: 0 auto 24px;
+      color: #2563eb;
+    }
+    .service-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: #475569;
+      margin-bottom: 24px;
+    }
+    .card-link {
+      text-decoration: none;
+      font-weight: 600;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    /* download cards */
+    .download-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f1f4f9 100%);
+    }
+    .badge-os {
+      background: #e2e8f0;
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .btn-download {
+      background: #0f172a;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 48px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .btn-download:hover {
+      background: #2563eb;
+      transform: scale(1.02);
+    }
+    /* galeri foto (dari google / placeholder) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+      transition: 0.2s;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: 0.3s;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+    /* form */
+    .contact-form {
+      max-width: 680px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.1);
+      border: 1px solid #e2e8f0;
+    }
+    .input-group {
+      margin-bottom: 24px;
+    }
+    .input-group input, .input-group textarea {
+      width: 100%;
+      padding: 14px 20px;
+      border: 1px solid #cbd5e1;
+      border-radius: 60px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    .input-group textarea {
+      border-radius: 28px;
+      resize: vertical;
+    }
+    .input-group input:focus, .input-group textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+    }
+    .btn-submit {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 60px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1rem;
+    }
+    .btn-submit:hover {
+      background: #1d4ed8;
+    }
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 48px 0 24px;
+      margin-top: 40px;
+    }
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .footer-copyright {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid #334155;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 780px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .nav-flex {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .contact-form {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo">Fanky<span>NAS</span></div>
+    <div class="nav-links">
+      <a href="#home">Beranda</a>
+      <a href="#services">Layanan</a>
+      <a href="#download">Download APK</a>
+      <a href="#contact">Kontak</a>
+      <a href="https://github.com/fanky86" target="_blank" class="btn-outline-sm"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-cloud-upload-alt"></i> Self-Hosted Ecosystem</div>
+        <h1>Kelola Data & Foto <br> Seperti Profesional</h1>
+        <p>Immich • CasaOS • Dashboard terpadu. Infrastruktur pribadi dengan performa tinggi dan privasi total.</p>
+        <div class="hero-stats">
+          <div><span>24/7</span><br>Uptime</div>
+          <div><span>4+</span><br>Layanan Aktif</div>
+          <div><span>FULL</span><br>Enkripsi</div>
+        </div>
+        <div style="margin-top: 28px;">
+          <a href="#services" class="btn-download" style="background:#2563eb;">Jelajahi Layanan <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <!-- Foto dari sumber bebas (tema server & immich) -->
+        <img src="https://picsum.photos/id/0/500/400" alt="Server and cloud illustration" loading="lazy">
+        <p style="margin-top: 12px; font-size: 0.7rem; color:#475569;">⚡ Ilustrasi infrastruktur modern (sumber: Picsum)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section (Immich, CasaOS, Dashboard, GitHub) -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title"><span>Layanan</span> & Akses Cepat</div>
+      <div class="cards-grid">
+        <!-- Immich -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-images"></i></div>
+          <h3>Immich</h3>
+          <p>Solusi foto & video self-hosted, mirip Google Photos. Akses langsung ke galeri pribadi.</p>
+          <a href="https://photos.fankynas.cloud" target="_blank" class="card-link">photos.fankynas.cloud <i class="fas fa-external-link-alt"></i></a>
+        </div>
+        <!-- CasaOS (Private - rahasia) -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-home"></i></div>
+          <h3>CasaOS <span style="font-size: 0.7rem; background:#f1f5f9; padding:2px 8px; border-radius:40px;">Private</span></h3>
+          <p>Manajemen NAS dan aplikasi rumah pintar. <strong>Akses internal terbatas</strong> (hanya jaringan privat).</p>
+          <span class="badge-os"><i class="fas fa-lock"></i> Rahasia & Aman</span>
+        </div>
+        <!-- Dashboard -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-tachometer-alt"></i></div>
+          <h3>Dashboard Hub</h3>
+          <p>Kontrol semua service, monitoring resource, dan shortcut cepat.</p>
+          <a href="https://dash.fankynas.cloud" target="_blank" class="card-link">dash.fankynas.cloud <i class="fas fa-external-link-alt"></i></a>
+        </div>
+        <!-- GitHub Profile -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fab fa-github"></i></div>
+          <h3>GitHub fanky86</h3>
+          <p>Repository open-source, konfigurasi, dan dokumentasi proyek NAS.</p>
+          <a href="https://github.com/fanky86" target="_blank" class="card-link">github.com/fanky86 <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeri Foto dari Google (referensi gambar bebas dengan gaya profesional) -->
+  <section style="background: #f1f5f9;">
+    <div class="container">
+      <div class="section-title"><span>Galeri</span> Inspirasi Visual</div>
+      <p style="text-align: center; margin-bottom: 30px; color:#334155;">Foto-foto koleksi dari layanan Immich dan suasana cloud (sumber gambar bebas lisensi / placeholder Google style)</p>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://picsum.photos/id/20/400/300" alt="workspace modern"></div>
+        <div class="gallery-item"><img src="https://picsum.photos/id/106/400/300" alt="bunga estetik"></div>
+        <div class="gallery-item"><img src="https://picsum.photos/id/26/400/300" alt="arsitektur"></div>
+        <div class="gallery-item"><img src="https://picsum.photos/id/169/400/300" alt="sunset"></div>
+      </div>
+      <p style="text-align: center; font-size:0.8rem; margin-top: 20px;"><i class="fas fa-google"></i> Contoh foto dari Google Images & Picsum — tampilan gallery untuk Immich Anda.</p>
+    </div>
+  </section>
+
+  <!-- Download APK section (Immich & CasaOS Assistant) -->
+  <section id="download">
+    <div class="container">
+      <div class="section-title"><span>Download APK</span> yang Diperlukan</div>
+      <div class="cards-grid">
+        <!-- Immich Mobile APK -->
+        <div class="service-card download-card">
+          <div class="service-icon"><i class="fab fa-android"></i></div>
+          <h3>Immich Mobile</h3>
+          <p>Aplikasi Android untuk backup otomatis, streaming, dan sinkronisasi penuh dengan server Immich Anda.</p>
+          <div class="badge-os" style="margin-bottom: 20px;">Versi terbaru: v1.106+</div>
+          <a href="https://github.com/immich-app/immich/releases/latest" target="_blank" class="btn-download"><i class="fab fa-android"></i> Download Immich APK</a>
+          <p style="margin-top: 12px; font-size: 0.7rem;">Official GitHub Release | APK untuk Android</p>
+        </div>
+        <!-- CasaOS Assistant APK -->
+        <div class="service-card download-card">
+          <div class="service-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+          <h3>CasaOS Assistant</h3>
+          <p>Kelola CasaOS dari perangkat mobile, pantau storage, container, dan akses cepat file.</p>
+          <div class="badge-os" style="margin-bottom: 20px;">CasaOS Android Client</div>
+          <a href="https://github.com/IceWhaleTech/CasaOS-Android/releases" target="_blank" class="btn-download"><i class="fas fa-download"></i> Download CasaOS APK</a>
+          <p style="margin-top: 12px; font-size: 0.7rem;">Resmi dari IceWhale | APK untuk manajemen CasaOS</p>
+        </div>
+        <!-- Extra: catatan apk lain jika diperlukan -->
+        <div class="service-card download-card">
+          <div class="service-icon"><i class="fas fa-toolbox"></i></div>
+          <h3>Tools Pendukung</h3>
+          <p>Terminal, file manager, atau Tailscale APK untuk akses jarak jauh yang aman ke NAS kamu.</p>
+          <a href="https://tailscale.com/download" target="_blank" class="btn-download" style="background:#2d3748;"><i class="fas fa-shield-alt"></i> Tailscale APK</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form (FormSubmit) -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title"><span>Hubungi</span> Kami</div>
+      <div class="contact-form">
+        <form action="https://formsubmit.co/radenmanis123@gmail.com" method="POST">
+          <!-- honeypot & konfigurasi -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://fankynas.cloud/thanks.html">
+          <input type="hidden" name="_subject" value="Pesan Baru dari Website FankyNAS">
+          <div class="input-group">
+            <input type="text" name="nama" placeholder="Nama lengkap" required>
+          </div>
+          <div class="input-group">
+            <input type="email" name="email" placeholder="Alamat email" required>
+          </div>
+          <div class="input-group">
+            <textarea rows="4" name="pesan" placeholder="Tanyakan tentang Immich, CasaOS, atau kebutuhan APK..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
+          <p style="font-size: 0.7rem; margin-top: 16px; text-align: center;">🔒 Data akan langsung dikirim ke radenmanis123@gmail.com via FormSubmit</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-flex">
+      <div>
+        <h3 style="color:white; margin-bottom:12px;">FankyNAS</h3>
+        <p>Solusi privat & profesional<br>berbasis CasaOS + Immich</p>
+      </div>
+      <div>
+        <h4 style="color:white;">Link Penting</h4>
+        <ul style="list-style: none; margin-top: 8px;">
+          <li><a href="https://photos.fankynas.cloud" style="color:#94a3b8; text-decoration: none;">Immich Photos</a></li>
+          <li><a href="https://dash.fankynas.cloud" style="color:#94a3b8; text-decoration: none;">Dashboard</a></li>
+          <li><a href="https://github.com/fanky86" style="color:#94a3b8; text-decoration: none;">GitHub fanky86</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:white;">Download APK</h4>
+        <ul style="list-style: none; margin-top: 8px;">
+          <li><a href="https://github.com/immich-app/immich/releases/latest" style="color:#94a3b8;">Immich APK</a></li>
+          <li><a href="https://github.com/IceWhaleTech/CasaOS-Android/releases" style="color:#94a3b8;">CasaOS Assistant</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      © 2025 FankyNAS · Managed with ❤️ using Immich & CasaOS · Semua link layanan aktif 24/7
+    </div>
+  </div>
+</footer>
+
+<!-- penjelasan kecil & konfirmasi link -->
+<script>
+  // memastikan semua link eksternal terbuka dengan aman & sedikit efek konsol
+  (function() {
+    console.log("Website FankyNAS ready | Immich, CasaOS, Dashboard | Semua link siap pakai");
+    const allExtLinks = document.querySelectorAll('a[href^="http"]');
+    allExtLinks.forEach(link => {
+      if(!link.hasAttribute('target')) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
